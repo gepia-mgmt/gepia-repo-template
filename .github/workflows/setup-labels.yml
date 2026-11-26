@@ -1,0 +1,40 @@
+name: GEPIA — setup labels
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  setup-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create or update repository labels
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          while IFS='|' read -r name color description; do
+            [ -z "$name" ] && continue
+            gh label create "$name" \
+              --color "$color" \
+              --description "$description" \
+              --force
+          done <<'LABELS'
+          type:requirement|1D76DB|Requirement issue
+          type:acceptance|5319E7|Acceptance criterion issue
+          type:task|0E8A16|Task pull request
+          priority:must|B60205|Non-negotiable requirement
+          priority:should|D93F0B|Important but negotiable
+          priority:could|FBCA04|Nice to have
+          priority:wont|6E7781|Explicitly out of scope
+          area:hardware|0052CC|Hardware, electronics or PCB
+          area:software|1D76DB|Firmware, software or scripts
+          area:docs|C5DEF5|Documentation and reports
+          area:test|BFD4F2|Tests, validation and measurement
+          evidence:missing|E99695|Requirement or acceptance item lacks evidence
+          flag:blocked|B60205|Optional visibility flag; Project Status remains authoritative
+          LABELS

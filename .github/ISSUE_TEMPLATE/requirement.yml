@@ -1,0 +1,79 @@
+name: Requirement
+description: Register a requirement for the semillero project
+title: "[REQ-###] "
+labels: ["type:requirement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use one issue per requirement. Acceptance criteria must be created as
+        sub-issues using the Acceptance template.
+  - type: input
+    id: requirement_id
+    attributes:
+      label: Requirement ID
+      placeholder: REQ-001
+    validations:
+      required: true
+  - type: input
+    id: group
+    attributes:
+      label: Requirement group
+      placeholder: RG-001
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Owner
+      placeholder: "@github-user"
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - must
+        - should
+        - could
+        - wont
+    validations:
+      required: true
+  - type: input
+    id: estimate
+    attributes:
+      label: Estimate
+      description: Estimated hours or story points.
+      placeholder: "8"
+  - type: input
+    id: soft_deadline
+    attributes:
+      label: Soft deadline (YYYY-MM-DD)
+      placeholder: "2026-06-30"
+  - type: input
+    id: hard_deadline
+    attributes:
+      label: Hard deadline (YYYY-MM-DD)
+      placeholder: "2026-07-15"
+  - type: textarea
+    id: statement
+    attributes:
+      label: Requirement statement
+      description: "The system shall..."
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this needed? Link to the project objective.
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and assumptions
+  - type: markdown
+    attributes:
+      value: |
+        After creating the requirement, add each acceptance criterion as a
+        sub-issue. Do not paste the full acceptance list only as checkboxes.

@@ -1,0 +1,56 @@
+name: Acceptance criterion
+description: Define one verifiable acceptance criterion as a sub-issue
+title: "[AC-###] "
+labels: ["type:acceptance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Create this issue, then add it as a **sub-issue** of its requirement.
+  - type: input
+    id: acceptance_id
+    attributes:
+      label: Acceptance criterion ID
+      placeholder: AC-001
+    validations:
+      required: true
+  - type: input
+    id: parent_requirement
+    attributes:
+      label: Parent requirement
+      description: Requirement ID or issue number.
+      placeholder: REQ-001 / #12
+    validations:
+      required: true
+  - type: textarea
+    id: criterion
+    attributes:
+      label: Criterion
+      description: Use Given / When / Then.
+      placeholder: |
+        Given ...
+        When ...
+        Then ...
+    validations:
+      required: true
+  - type: dropdown
+    id: verification
+    attributes:
+      label: Verification method
+      options:
+        - test
+        - review
+        - demo
+        - inspection
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Expected evidence
+      description: What must be visible in the PR or its artifacts?
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Thresholds, tolerances, environment, exclusions.
